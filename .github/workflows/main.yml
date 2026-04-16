@@ -14,13 +14,22 @@ on:
       environment:
         description: "Environment"
         type: environment
+      matrix:
+        description: "Matrix strategy as JSON string"
+        required: true
+        type: string
 jobs:
   log-the-inputs:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix: ${{ fromJSON(inputs.matrix) }}
     steps:
-      - run: |
+      - name: Print strategy values
+        run: |
           echo "Log level: $LEVEL"
           echo "Environment: $ENVIRONMENT"
+          echo "Version: ${{ matrix.version }}"
+          echo "OS: ${{ matrix.os }}"
         env:
           LEVEL: ${{ inputs.logLevel }}
           ENVIRONMENT: ${{ inputs.environment }}

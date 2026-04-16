@@ -12,7 +12,7 @@ on:
           - debug
         default: warning
       environment:
-         description: "Environment"
+        description: "Environment"
         required: true
         type: environment
 jobs:

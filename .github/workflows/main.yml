@@ -13,7 +13,6 @@ on:
         default: warning
       environment:
         description: "Environment"
-        required: true
         type: environment
 jobs:
   log-the-inputs:
